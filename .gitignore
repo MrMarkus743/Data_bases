@@ -1,0 +1,13 @@
+.env
+.log
+.venv
+.tmp
+Docker/
+.zip
+Materials/
+.DS_Store
+Thumbs.db
+*.sql.bak
+dump.sql
+*_dump.sql
+.vscode/
