@@ -1,0 +1,22 @@
+name: data_bases
+
+services:
+  postgres:
+    image: postgres:17-alpine
+    container_name: postgres
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-project_db}
+      POSTGRES_USER: ${POSTGRES_USER:-Mark_V}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-12345}
+    ports:
+      - "${POSTGRES_PORT:-6438}:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data 
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-Mark_V} -d ${POSTGRES_DB:-project_db}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+volumes:
+  postgres_data:
+    driver: local
